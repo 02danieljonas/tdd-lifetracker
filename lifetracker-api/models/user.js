@@ -1,4 +1,6 @@
 const { UnauthorizedError, NotFoundError, BadRequestError } = require("../utils/errors");
+const {BCRYPT_WORK_FACTOR} =require("../config")
+const bcrypt = require("bcrypt");
 
 const db = require("../db");
 
@@ -47,6 +49,7 @@ class User {
         }
 
         //take users password and hash it
+        const hashedPw = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
 
         //take users email and lowercase it
         const lowercaseEmail = credentials.email.toLowerCase();
@@ -69,15 +72,12 @@ class User {
         `,
             [
                 lowercaseEmail,
-                credentials.password,
+                hashedPw,
                 credentials.firstName,
                 credentials.lastName,
                 credentials.username
             ]
         );
-        console.log("12db.query");
-
-
         const user = result.rows[0];
         return user;
     }
