@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "Express backend for the LifeTracker application",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "nodemon": "^2.0.18"
+  }
 }
