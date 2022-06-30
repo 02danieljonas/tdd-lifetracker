@@ -441,22 +441,22 @@ Note that when developing the backend, SITE interns will be asked to write tests
 Here are the pieces of functionality that should be built out for the backend:
 
 - **Project setup**
-  - [ ] First things first, bootstrap the Express application with some essential files and starter code
-  - [ ] Create a `.gitignore` file, an `app.js` file, an `app.test.js` file, and a `server.js` file
-  - [ ] Make sure `node_modules` are added to the `.gitignore` file.
-  - [ ] Add dependencies for `express@next`, `morgan`, `cors`, and `nodemon`
-  - [ ] Install new dependencies for `bcrypt`, `jsonwebtoken`, `colors`, `dotenv`, `pg`
-  - [ ] Commit all work to `git`
-  - [ ] Add a `.env` file to the root of the repo and include the following environment variables
-    - [ ] `PORT` (default to `3001`)
-    - [ ] `SECRET_KEY` (set to a long random string)
-    - [ ] `BCRYPT_WORK_FACTOR` (set to `13`)
-    - [ ] `DATABASE_USER`
-    - [ ] `DATABASE_PASS`
-    - [ ] `DATABASE_HOST`
-    - [ ] `DATABASE_PORT`
-    - [ ] `DATABASE_NAME` - (set to `lifetracker`)
-    - [ ] `DATABASE_TEST_NAME` - (set to `lifetracker_test`)
+  - [X] First things first, bootstrap the Express application with some essential files and starter code
+  - [X] Create a `.gitignore` file, an `app.js` file, an `app.test.js` file, and a `server.js` file
+  - [X] Make sure `node_modules` are added to the `.gitignore` file.
+  - [X] Add dependencies for `express@next`, `morgan`, `cors`, and `nodemon`
+  - [X] Install new dependencies for `bcrypt`, `jsonwebtoken`, `colors`, `dotenv`, `pg`
+  - [X] Commit all work to `git`
+  - [X] Add a `.env` file to the root of the repo and include the following environment variables
+    - [X] `PORT` (default to `3001`)
+    - [X] `SECRET_KEY` (set to a long random string)
+    - [X] `BCRYPT_WORK_FACTOR` (set to `13`)
+    - [X] `DATABASE_USER`
+    - [X] `DATABASE_PASS`
+    - [X] `DATABASE_HOST`
+    - [X] `DATABASE_PORT`
+    - [X] `DATABASE_NAME` - (set to `lifetracker`)
+    - [X] `DATABASE_TEST_NAME` - (set to `lifetracker_test`)
   - [ ] Add a `config.test.js` file
     - [ ] Write tests that check to make sure that:
       - [ ] `process.env.NODE_ENV` is set to `test` when the test suite is run
@@ -471,10 +471,10 @@ Here are the pieces of functionality that should be built out for the backend:
         - [ ] Check to see if a valid `process.env.DATABASE_URL` environment variable exists, and return that if it does.
         - [ ] When `IS_TESTING` is `true`, the `getDatabaseUri` function should use the test database
         - [ ] Otherwise, it should combine the proper database environment variables into a database connection string if no `process.env.DATABASE_URL` environment variable exists
-  - [ ] Add a `config.js` file
-    - [ ] Use the `dotenv` package to parse the environment variables from the `.env` file.
+  - [X] Add a `config.js` file
+    - [X] Use the `dotenv` package to parse the environment variables from the `.env` file.
     - [ ] Export each of the environment variables from the `config.js` file until the tests pass
-    - [ ] Write a `getDatabaseUri` function so that all the tests pass
+    - [X] Write a `getDatabaseUri` function so that all the tests pass
   - [ ] Commit all work to `git`
   - [ ] The project should now be ready to go!
 - **PostgreSQL database**
