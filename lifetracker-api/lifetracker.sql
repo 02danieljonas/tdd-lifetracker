@@ -1,7 +1,7 @@
 \echo 'Delete and recreate lifetracker-schema db'
-\prompt 'Return for any key or contro-c to cancel >' answer
+\prompt 'Return for any key or control-c to cancel >' answer
 
-DROP DATABASE IF EXISTS lifetracker;
+DROP DATABASE lifetracker;
 CREATE DATABASE lifetracker;
 \connect lifetracker;
 

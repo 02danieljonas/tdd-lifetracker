@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { PORT } = require("./config");
+const authRoutes = require("./routes/auth")
+
 
 const { BadRequestError, NotFoundError } = require("./utils/errors");
 
@@ -22,6 +24,9 @@ app.use(morgan("tiny"));
 app.get("/", (req, res, next) => {
     res.status(200).json({ ping: "gnop" });
 });
+
+app.use("/auth", authRoutes)
+
 
 app.use((req, res, next) => {
     return next(new NotFoundError());
