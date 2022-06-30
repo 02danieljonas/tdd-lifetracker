@@ -558,10 +558,10 @@ Here are the pieces of functionality that should be built out for the backend:
   - [ ] Add new directories for `models`, `routes`, and `middleware`
   - [ ] The **User** model
     - [ ] In the `models` directory, create two new files: `models/user.js` and `models/user.test.js`
-      - [ ] The `User` model should have **at least** the following static methods:
-        - [ ] `login`
-        - [ ] `register`
-        - [ ] `fetchUserByEmail`
+      - [X] The `User` model should have **at least** the following static methods:
+        - [X] `login`
+        - [X] `register`
+        - [X] `fetchUserByEmail`
     - [ ] In the `models/user.test.js` file:
       - [ ] Test the `login` method. Write test cases for:
         - [ ] User can login successfully with proper credentials
@@ -576,8 +576,8 @@ Here are the pieces of functionality that should be built out for the backend:
         - [ ] A valid email returns a user from the database
         - [ ] Invalid emails are handled correctly
       - [ ] It will probably be important to use the `beforeAll`, `afterAll`, `beforeEach`, and `afterEach` hooks to add and delete users from the database before running the tests
-    - [ ] In the `models/user.js` file:
-      - [ ] Import the `bcrypt` package, the `db` client, and the app `config`.
+    - [X] In the `models/user.js` file:
+      - [X] Import the `bcrypt` package, the `db` client, and the app `config`.
       - [ ] Implement the features outlined in the tests until they're all passing.
   - [ ] Commit all work to `git`
   - [ ] The **tokens** utility functions
