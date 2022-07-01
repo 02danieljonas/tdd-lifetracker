@@ -29,18 +29,6 @@ class User {
         return { user: info, accessToken: token };
     }
 
-    static async tokenMagic(user) {
-        return {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            created_at: user.created_at,
-            update_at: user.update_at,
-        };
-    }
-
     static async login(credentials, header) {
         //['authorization'].split(' ')[1]
 

@@ -1,8 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { PORT } = require("./config");
+const { PORT, BCRYPT_WORK_FACTOR,
+    SECRET_KEY,
+    REFRESH_SECRET_KEY, } = require("./config");
 const authRoutes = require("./routes/auth");
+const security = require("./models/security");
+
+const jwt = require("jsonwebtoken");
 
 const { BadRequestError, NotFoundError } = require("./utils/errors");
 
@@ -24,6 +29,11 @@ app.get("/", (req, res, next) => {
     res.status(200).json({ ping: "gnop" });
 });
 
+app.get("/authToken", authenticateToken, (req, res)=>{
+    res.json({res: req.header})
+});
+
+
 app.use("/auth", authRoutes);
 
 app.use((req, res, next) => {
@@ -38,5 +48,24 @@ app.use((err, req, res, next) => {
         error: { message, status },
     });
 });
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+    if (token == null) {
+        return res.sendStatus(401);
+    }
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) {
+            return res.sendStatus(403);
+        }
+        req.header = user
+
+        next()
+        // return res.status(200).json(req);
+    });
+
+}
+
 
 module.exports = app;
