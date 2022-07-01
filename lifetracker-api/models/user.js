@@ -3,13 +3,33 @@ const {
     NotFoundError,
     BadRequestError,
 } = require("../utils/errors");
-const { BCRYPT_WORK_FACTOR } = require("../config");
+const {
+    BCRYPT_WORK_FACTOR,
+    SECRET_KEY,
+    REFRESH_SECRET_KEY,
+} = require("../config");
 const bcrypt = require("bcrypt");
 
 const db = require("../db");
+const jwt = require("jsonwebtoken");
+const Tokens = require("../utils/tokens");
 
 class User {
     static async makePublicUser(user) {
+        let info = {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            created_at: user.created_at,
+            update_at: user.update_at,
+        };
+        const token = await Tokens.createToken(info);
+        return { user: info, accessToken: token };
+    }
+
+    static async tokenMagic(user) {
         return {
             id: user.id,
             username: user.username,
@@ -21,7 +41,9 @@ class User {
         };
     }
 
-    static async login(credentials) {
+    static async login(credentials, header) {
+        //['authorization'].split(' ')[1]
+
         //user should submit email and passowrd
         //if any fileds are missing throw an error
 
@@ -44,8 +66,8 @@ class User {
         //with the password in the db
         //if there is a match return the user
         if (user) {
-            console.log(credentials.password);
-            console.log(user.password);
+            // console.log(credentials.password);
+            // console.log(user.password);
             const isValid = await bcrypt.compare(
                 credentials.password,
                 user.password

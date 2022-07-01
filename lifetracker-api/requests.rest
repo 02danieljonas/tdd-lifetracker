@@ -1,0 +1,11 @@
+get http://localhost:3001
+
+###
+
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+	"email": "f1@@",
+	"password": "f"
+}

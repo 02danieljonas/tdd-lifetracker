@@ -583,7 +583,7 @@ Here are the pieces of functionality that should be built out for the backend:
   - [ ] The **tokens** utility functions
     - [ ] In the `utils` directory, create two new files: `utils/tokens.js` and `utils/tokens.test.js`
       - [ ] At the bare minimum, two functions will be needed:
-        - [ ] One that accepts a JSON payload as an argument and converts it into a JWT
+        - [X] One that accepts a JSON payload as an argument and converts it into a JWT
         - [ ] One that accepts a JWT as an argument, validates it, and returns the JSON payload encoded within - if it's valid
     - [ ] In the `utils/tokens.test.js` file:
       - [ ] Write test cases for:
