@@ -1,0 +1,170 @@
+$primary-color: #fffae3;
+$secondary-color: #f7567c;
+$text-primary-color: #99e1d9;
+$text-secondary-color: #1d2d44;
+
+$wild-color: #2a0800; //maybe cyan
+
+* {
+    color: $wild-color;
+}
+
+button {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+input {
+    background-color: $primary-color;
+    border-color: $text-secondary-color;
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+.error {
+    color: #fe3210;
+}
+
+.app {
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    background-color: $primary-color;
+    color: $text-secondary-color;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.Navbar {
+    background-color: $secondary-color;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    .nav-links {
+        margin: auto 0;
+        * {
+            padding: 10px;
+            margin: auto 20px;
+            color: $primary-color;
+            font-size: 20pt;
+            text-decoration: none;
+        }
+        button {
+            background-color: cyan;
+            border: none;
+            border-radius: 10px;
+        }
+    }
+}
+
+.landing-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .hero {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        height: 500px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        * {
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .title {
+            font-size: 76px;
+            font-weight: 700;
+            color: $text-primary-color;
+            background-color: $text-secondary-color;
+        }
+        .cta {
+            margin-top: 10px;
+            font-size: 50px;
+            color: $text-secondary-color;
+            background-color: $text-primary-color;
+        }
+        img {
+            z-index: 0;
+            position: absolute;
+        }
+    }
+}
+
+.login-page {
+    .login-form {
+        color: $text-secondary-color;
+
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 30pt;
+        label {
+            margin-top: 10px;
+        }
+
+        input,
+        button {
+            height: 60px;
+            margin-top: 5px;
+        }
+        .submit-login {
+            cursor: pointer;
+            margin-top: 40px;
+            background-color: $secondary-color;
+            font-size: 20pt;
+            color: $text-primary-color;
+        }
+
+        .invalid-email {
+            color: #fe3210;
+            font-size: 16px;
+        }
+    }
+}
+
+.registration-form {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 30pt;
+    margin-left: auto;
+    margin-right: auto;
+
+    input,
+    button {
+        height: 60px;
+    }
+    button {
+        cursor: pointer;
+        background-color: $secondary-color;
+        font-size: 20pt;
+        color: $text-primary-color;
+    }
+    
+    .name-input {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        * {
+            width: 45%;
+        }
+    }
+    
+    label {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+}
