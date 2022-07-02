@@ -21,6 +21,14 @@ Building this application you will accomplish the following:
 - [ ] Store user-authenticated JWT tokens in the browser's local storage for persisted authentication
 - [ ] Employ useEffect and useState hooks to manage application state on the frontend
 
+## Gif
+
+![](http://g.recordit.co/ABnSSEOdSx.gif)
+![](http://g.recordit.co/WTopRv8xSo.gif)
+![](http://g.recordit.co/xQdz6kONGo.gif)
+![](http://g.recordit.co/iJJckuLVl9.gif)
+
+
 ## Application Features
 
 This assignment asks SITE interns to accomplish the following:
