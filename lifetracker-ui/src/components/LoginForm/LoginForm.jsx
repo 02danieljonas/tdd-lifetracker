@@ -1,14 +1,18 @@
+import { login } from "components/login/login";
 import React from "react";
-
-// const
 
 export default function LoginForm() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    console.log(email);
-    console.log(password);
 
-    const [emailInvalid, setEI] = React.useState(<></>);
+    const loginUser = async () => {
+        if (emailInvalid) {
+            let userInfo = await login("admin", "password");
+            console.log(userInfo);
+        }
+    };
+
+    const [emailInvalid, setEmailInvalid] = React.useState(<></>);
     return (
         <div className="login-form">
             <label htmlFor="email">Email:</label>
@@ -21,16 +25,18 @@ export default function LoginForm() {
                 onChange={(e) => {
                     setEmail(e.target.value);
                     if (e.target.value.indexOf("@") > 0) {
-                        setEI(<></>);
+                        setEmailInvalid(true);
                     } else {
-                        setEI(
-                            <div className="invalid-email error">Invalid email</div>
-                        );
+                        setEmailInvalid(false);
                     }
                 }}
             />
-            {emailInvalid}
-            <label htmlFor="email">Password:</label>
+            {emailInvalid ? (
+                <></>
+            ) : (
+                <div className="invalid-email error">Invalid email</div>
+            )}
+            <label htmlFor="password">Password:</label>
             <input
                 className="form-input"
                 type="password"
@@ -43,7 +49,7 @@ export default function LoginForm() {
             <button
                 className="submit-login"
                 onClick={() => {
-                    console.error("LoginForm 41, Setup loginUser function");
+                    loginUser();
                 }}
             >
                 Login

@@ -2,6 +2,7 @@ const {
     UnauthorizedError,
     NotFoundError,
     BadRequestError,
+    ForbiddenError,
 } = require("../utils/errors");
 const {
     BCRYPT_WORK_FACTOR,
@@ -147,6 +148,23 @@ class User {
         const user = result.rows[0];
 
         return user;
+    }
+
+    static async authenticateToken(token) {
+        // const authHeader = req.headers["authorization"];
+        // const token = authHeader && authHeader.split(" ")[1];
+        if (token == null) {
+            throw new BadRequestError("Token is empty");
+        }
+
+        let userRes;
+        jwt.verify(token, SECRET_KEY, (err, user) => {
+            if (err) {
+                throw new BadRequestError(`Token is invalid`);
+            }
+            userRes = user;
+        });
+        return userRes;
     }
 }
 
