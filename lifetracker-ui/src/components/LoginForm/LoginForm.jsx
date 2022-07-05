@@ -7,7 +7,7 @@ export default function LoginForm() {
 
     const loginUser = async () => {
         if (emailInvalid) {
-            let userInfo = await login("admin", "password");
+            let userInfo = await login(email, password);
             console.log(userInfo);
         }
     };

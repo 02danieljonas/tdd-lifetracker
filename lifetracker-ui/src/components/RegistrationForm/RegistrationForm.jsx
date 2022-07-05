@@ -108,7 +108,6 @@ export default function RegistrationForm() {
             ) : (
                 <p className="error">Passwords do not match.</p>
             )}
-            <br />
             <button
                 onClick={() => {
                     console.log("Line 115 set up signupUser()");
