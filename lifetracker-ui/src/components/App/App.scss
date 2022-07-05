@@ -145,8 +145,10 @@ input {
     input,
     button {
         height: 60px;
-    }
+        margin-top: 5px;
+}
     button {
+        margin-top: 40px;
         cursor: pointer;
         background-color: $secondary-color;
         font-size: 20pt;
@@ -157,14 +159,15 @@ input {
         margin-top: 20px;
         display: flex;
         justify-content: space-between;
-
         * {
             width: 45%;
         }
     }
     
     label {
-        padding-top: 20px;
-        padding-bottom: 10px;
+        margin-top: 10px;
+
+        // padding-top: 20px;
+        // padding-bottom: 10px;
     }
 }

@@ -1,23 +1,29 @@
+
 get http://localhost:3001/authToken
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJEIiwiZW1haWwiOiJmMUBAIiwiZmlyc3RfbmFtZSI6ImYiLCJsYXN0X25hbWUiOiJmIiwiY3JlYXRlZF9hdCI6IjIwMjItMDYtMzBUMjE6MDI6MzIuNjM2WiIsInVwZGF0ZV9hdCI6IjIwMjItMDYtMzBUMjE6MDI6MzIuNjM2WiIsImlhdCI6MTY1NjY5NTI3M30.pu5G2_1OapT47gnMQP9V5Du0y5mYpJPLEBegFLiQWSc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmMSIsImVtYWlsIjoiZjFAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiZGF2IiwibGFzdF9uYW1lIjoiZGF2IiwiY3JlYXRlZF9hdCI6IjIwMjItMDctMDRUMTU6MDc6NTYuMTgyWiIsInVwZGF0ZV9hdCI6IjIwMjItMDctMDRUMTU6MDc6NTYuMTgyWiIsImlhdCI6MTY1Njk0NzM3Nn0.0gg6VpmjDMa9wcE8PPIwzXxaNqnl1ADFhBd_Jf2O1PY
 
 ###
+get http://localhost:3001/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJmMSIsImVtYWlsIjoiZjFAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiZGF2IiwibGFzdF9uYW1lIjoiZGF2IiwiY3JlYXRlZF9hdCI6IjIwMjItMDctMDRUMTU6MDc6NTYuMTgyWiIsInVwZGF0ZV9hdCI6IjIwMjItMDctMDRUMTU6MDc6NTYuMTgyWiIsImlhdCI6MTY1Njk0NzM3Nn0.0gg6VpmjDMa9wcE8PPIwzXxaNqnl1ADFhBd_Jf2O1PY
 
+###
 POST http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-	"email": "f1@@",
+	"email": "f1@mail.com",
 	"password": "f"
 }
 
 ###
-
-POST http://localhost:3001/auth/login
+POST http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-	"email": "f1@@",
+	"email": "f12@mail.com",
+	"username": "f1",
+	"firstName": "dav",
+	"lastName": "dav",
 	"password": "f"
 }
 
