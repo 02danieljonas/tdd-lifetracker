@@ -5,14 +5,15 @@ export default function LoginForm() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const loginUser = async () => {
-        if (emailInvalid) {
+    const handleOnSubmit = async () => {
+        if (!emailInvalid || email == "") {
+            setEmailInvalid(false);
+        } else {
             let userInfo = await login(email, password);
             console.log(userInfo);
         }
     };
-
-    const [emailInvalid, setEmailInvalid] = React.useState(<></>);
+    const [emailInvalid, setEmailInvalid] = React.useState(true);
     return (
         <div className="login-form">
             <label htmlFor="email">Email:</label>
@@ -49,7 +50,7 @@ export default function LoginForm() {
             <button
                 className="submit-login"
                 onClick={() => {
-                    loginUser();
+                    handleOnSubmit();
                 }}
             >
                 Login
