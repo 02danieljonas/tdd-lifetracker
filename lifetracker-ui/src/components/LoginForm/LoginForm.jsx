@@ -1,5 +1,6 @@
 import { login } from "components/login/login";
 import React from "react";
+import axios from "axios";
 
 export default function LoginForm() {
     const [email, setEmail] = React.useState("");
@@ -8,11 +9,19 @@ export default function LoginForm() {
     const handleOnSubmit = async () => {
         if (!emailInvalid || email == "") {
             setEmailInvalid(false);
-        } else {
-            let userInfo = await login(email, password);
-            console.log(userInfo);
+            return;
+        }
+        try {
+            const res = await axios.post("http://localhost:3001/auth/login", {
+                email,
+                password,
+            });
+            console.log(res.data.user.user, res.data.user.accessToken);
+        } catch (err) {
+            console.log(err);
         }
     };
+
     const [emailInvalid, setEmailInvalid] = React.useState(true);
     return (
         <div className="login-form">

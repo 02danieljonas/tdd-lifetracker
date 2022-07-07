@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export default function RegistrationForm() {
     const [email, setEmail] = React.useState("");
@@ -10,6 +11,37 @@ export default function RegistrationForm() {
 
     let isEmailValid = true;
     let isPasswordMatch = true;
+
+    const handleOnSubmit = async () => {
+        isEmailValid = email.indexOf("@") > 0;
+        if (
+            !isEmailValid ||
+            email == "" ||
+            password !== passwordConfirm ||
+            password == "" ||
+            firstName == "" ||
+            lastName == "" ||
+            username == ""
+        ) {
+            console.log("Please input the correct info");
+            return;
+        }
+        try {
+            const res = await axios.post(
+                "http://localhost:3001/auth/register",
+                {
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    username,
+                }
+            );
+            console.log(res.data.user.user);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     if (email != "") {
         isEmailValid = email.indexOf("@") > 0;
@@ -110,7 +142,7 @@ export default function RegistrationForm() {
             )}
             <button
                 onClick={() => {
-                    console.log("Line 115 set up signupUser()");
+                    handleOnSubmit();
                 }}
             >
                 Create Account
