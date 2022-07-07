@@ -11,12 +11,21 @@ export default function LoginForm() {
             setEmailInvalid(false);
             return;
         }
+        
         try {
-            const res = await axios.post("http://localhost:3001/auth/login", {
-                email,
-                password,
-            });
-            console.log(res.data.user.user, res.data.user.accessToken);
+            axios
+                .post("http://localhost:3001/auth/login", {
+                    email,
+                    password,
+                })
+                .then(({ data }) => {
+                    console.log(data.user.user, data.user.accessToken);
+                    localStorage.setItem("accessToken", data.user.accessToken);
+                    console.log(localStorage.getItem("accessToken"));
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         } catch (err) {
             console.log(err);
         }

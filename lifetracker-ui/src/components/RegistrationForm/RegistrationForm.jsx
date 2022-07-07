@@ -27,17 +27,19 @@ export default function RegistrationForm() {
             return;
         }
         try {
-            const res = await axios.post(
-                "http://localhost:3001/auth/register",
-                {
+            axios
+                .post("http://localhost:3001/auth/register", {
                     email,
                     password,
                     firstName,
                     lastName,
                     username,
-                }
-            );
-            console.log(res.data.user.user);
+                })
+                .then(({ data }) => {
+                    console.log(data.user.user);
+                    localStorage.setItem("accessToken", data.user.accessToken);
+                    console.log(localStorage.getItem("accessToken"));
+                })
         } catch (err) {
             console.log(err);
         }
