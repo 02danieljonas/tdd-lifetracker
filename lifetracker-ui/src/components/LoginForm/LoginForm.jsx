@@ -1,45 +1,16 @@
-import { login } from "components/login/login";
 import React from "react";
 import axios from "axios";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "components/contexts/AuthContext";
 
+export default function LoginForm() {
+    const { handleOnLogin } = useAuthContext();
+    const handleOnSubmit = handleOnLogin;
 
-export default function LoginForm({isLoggedIn, setIsLoggedIn, userData}) {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    const navigate = useNavigate()
-
-
-
-    const handleOnSubmit = async () => {
-        // useNavigate("/")
-        if (!emailInvalid || email == "") {
-            setEmailInvalid(false);
-            return;
-        }
-
-        try {
-            axios
-                .post("http://localhost:3001/auth/login", {
-                    email,
-                    password,
-                })
-                .then(({ data }) => {
-                    console.log(data.user.user, data.user.accessToken);
-                    localStorage.setItem("accessToken", data.user.accessToken);
-                    console.log(localStorage.getItem("accessToken"));
-                    setIsLoggedIn(true)
-                    navigate("/")
-
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    const navigate = useNavigate();
 
     const [emailInvalid, setEmailInvalid] = React.useState(true);
     return (
@@ -78,8 +49,13 @@ export default function LoginForm({isLoggedIn, setIsLoggedIn, userData}) {
             <button
                 className="submit-login"
                 onClick={() => {
-                    handleOnSubmit();
-                    
+                    handleOnSubmit(
+                        navigate,
+                        emailInvalid,
+                        setEmailInvalid,
+                        email,
+                        password
+                    );
                 }}
             >
                 Login

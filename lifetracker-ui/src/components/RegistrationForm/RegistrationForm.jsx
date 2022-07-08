@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "components/contexts/AuthContext";
 
 export default function RegistrationForm() {
+    const { setIsLoggedIn } = useAuthContext();
     const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
     const [firstName, setFirstName] = React.useState("");
@@ -11,8 +12,7 @@ export default function RegistrationForm() {
     const [password, setPassword] = React.useState("");
     const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     let isEmailValid = true;
     let isPasswordMatch = true;
@@ -42,9 +42,9 @@ export default function RegistrationForm() {
                 })
                 .then(({ data }) => {
                     localStorage.setItem("accessToken", data.user.accessToken);
-                    setIsLoggedIn(true)
-                    navigate("/")
-                })
+                    setIsLoggedIn(true);
+                    navigate("/");
+                });
         } catch (err) {
             console.log(err);
         }

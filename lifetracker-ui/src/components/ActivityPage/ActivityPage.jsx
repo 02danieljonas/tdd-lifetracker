@@ -8,7 +8,7 @@ export default function ActivityPage() {
     <div className='activity-page'>
       ActivityPage
       <ActivityFeed/>
-      {/* {isProcessing?<Loading/>:<ActivityFeed/>} */}
+      {isProcessing?<Loading/>:<ActivityFeed/>}
     </div>
   )
 }

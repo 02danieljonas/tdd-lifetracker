@@ -10,10 +10,8 @@ import NutritionPage from "../NutritionPage/NutritionPage";
 import NotFound from "../NotFound/NotFound";
 import Loading from "../Loading/Loading";
 
-import {
-    AuthContextProvider,
-    useAuthContext,
-} from "components/contexts/AuthContext";
+import { AuthContextProvider } from "components/contexts/AuthContext";
+import { useAuthContext } from "components/contexts/AuthContext";
 import axios from "axios";
 
 export default function AppContainer() {
@@ -25,11 +23,7 @@ export default function AppContainer() {
 }
 
 function App() {
-    const { user, setUser } = useAuthContext();
-    const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
-    const [userData, SetUserData] = React.useState(null)
-    const [error, setError] = React.useState(null);
-    const [isFetching, setIsFetching] = React.useState(false);
+    const { user, setIsLoggedIn, SetUserData } = useAuthContext();
 
     React.useEffect(() => {
         const fetchUser = async () => {
@@ -41,8 +35,8 @@ function App() {
                 })
                 .then((data) => {
                     // console.log("data", data.data);
-                    setIsLoggedIn(true)
-                    SetUserData(data.data)
+                    setIsLoggedIn(true);
+                    SetUserData(data.data);
                 });
         };
 
@@ -50,24 +44,23 @@ function App() {
             fetchUser();
         }
     }, [user]);
-    
 
     return (
         <div className="app">
             <React.Fragment>
                 <BrowserRouter>
-                    <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>
+                    <Navbar />
                     <Routes>
-                        <Route path="/" element={<Landing isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>} />
-                        <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData} />} />
+                        <Route path="/" element={<Landing />} />
+                        <Route path="/login" element={<LoginPage />} />
                         <Route
                             path="/register"
-                            element={<RegistrationPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>}
+                            element={<RegistrationPage />}
                         />
-                        <Route path="/activity" element={<ActivityPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>} />
+                        <Route path="/activity" element={<ActivityPage />} />
                         <Route
                             path="/nutrition/*"
-                            element={<NutritionPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>}
+                            element={<NutritionPage />}
                         />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

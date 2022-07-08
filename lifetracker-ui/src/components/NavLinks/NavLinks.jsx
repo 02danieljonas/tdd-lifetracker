@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "components/contexts/AuthContext";
 
-export default function NavLinks({ isLoggedIn, setIsLoggedIn, userData }) {
-    console.log(isLoggedIn);
+export default function NavLinks() {
+    const {isLoggedIn, setIsLoggedIn} = useAuthContext();
+
+    const navigate = useNavigate()
+
     return (
         <div className="nav-links">
             <Link to={isLoggedIn ? "/activity" : "/login"}>Activity</Link>
@@ -13,6 +17,7 @@ export default function NavLinks({ isLoggedIn, setIsLoggedIn, userData }) {
                 }
                 onClick={() => {
                     setIsLoggedIn(false);
+                    navigate("/")
                     localStorage.clear();
                 }}
             >
