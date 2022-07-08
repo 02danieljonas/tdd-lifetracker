@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "components/contexts/AuthContext";
+import { useAuthContext } from "components/contexts/Auth";
 
 export default function LoginForm() {
     const { handleOnLogin } = useAuthContext();
@@ -48,7 +48,7 @@ export default function LoginForm() {
             <button
                 className="submit-login"
                 onClick={() => {
-                    handleOnSubmit(
+                    handleOnLogin(
                         navigate,
                         emailInvalid,
                         setEmailInvalid,

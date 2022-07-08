@@ -10,8 +10,8 @@ import NutritionPage from "../NutritionPage/NutritionPage";
 import NotFound from "../NotFound/NotFound";
 import Loading from "../Loading/Loading";
 
-import { AuthContextProvider } from "components/contexts/AuthContext";
-import { useAuthContext } from "components/contexts/AuthContext";
+import { AuthContextProvider } from "components/contexts/Auth";
+import { useAuthContext } from "components/contexts/Auth";
 import axios from "axios";
 
 export default function AppContainer() {

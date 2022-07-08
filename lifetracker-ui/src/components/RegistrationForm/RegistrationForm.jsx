@@ -1,9 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "components/contexts/AuthContext";
+import { useAuthContext } from "components/contexts/Auth";
 
 export default function RegistrationForm() {
+    
     const { setIsLoggedIn, handleOnRegister } = useAuthContext();
+
+
+
+
     const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
     const [firstName, setFirstName] = React.useState("");

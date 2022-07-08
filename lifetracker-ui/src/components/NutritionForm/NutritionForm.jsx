@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "components/contexts/AuthContext";
+import { useNutritionContext } from "components/contexts/Nutrition";
 
 export default function NutritionForm() {
-    const { nutritions, setNutritions} = useAuthContext()
-
-
-
+    const { nutritions, setNutritions } = useNutritionContext();
     const [name, setName] = useState("");
     const [calories, setCalories] = useState(1);
     const [imageUrl, setImageUrl] = useState("");
     const [category, setCategory] = useState("");
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     const [error, setError] = useState(null);
     const createNewNutrition = () => {
@@ -43,7 +39,7 @@ export default function NutritionForm() {
                 { name, calories, imageUrl, category },
             ]);
             console.log(nutritions);
-            navigate("/nutrition")
+            navigate("/nutrition");
         }
     };
 

@@ -271,7 +271,7 @@ The components in the `App.jsx` file should render the following components (alo
 
   - [ ] The **`activity`** context
 
-    - [ ] Create a file in the `contexts directory - `/contexts/activity.jsx`
+    - [X] Create a file in the `contexts directory - `/contexts/activity.jsx`
     - [ ] In that file, define a new `ActivityContext` with `React.createContext`
     - [ ] Use that context to create an `ActivityContextProvider` component
       - [ ] The `ActivityContextProvider` component should create state variables and updaters needed for `activity`, `initialized`, `isLoading`, and `error`.

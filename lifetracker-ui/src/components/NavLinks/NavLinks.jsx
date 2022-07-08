@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "components/contexts/AuthContext";
+import { useAuthContext } from "components/contexts/Auth";
 
 export default function NavLinks() {
     const {isLoggedIn, setIsLoggedIn} = useAuthContext();
