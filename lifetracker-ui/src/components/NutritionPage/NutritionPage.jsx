@@ -4,22 +4,9 @@ import NutritionNew from "../NutritionNew/NutritionNew";
 import NutritionDetail from "../NutritionDetail/NutritionDetail";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "components/NotFound/NotFound";
-import {
-    NutritionContextProvider,
-    useNutritionContext,
-} from "components/contexts/Nutrition";
 
-export default function NutritionContainer() {
-    return (
-        <NutritionContextProvider>
-            <NutritionPage />
-        </NutritionContextProvider>
-    );
-}
-
-function NutritionPage() {
-    const { nutritions } = useNutritionContext();
-
+export default function NutritionPage() {
+    
     return (
         <div className="nutrition-page">
             NutritionPage

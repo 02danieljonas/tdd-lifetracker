@@ -10,9 +10,9 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 
 ### Core Features
 
-- [ ] **The Nav Bar:** Implement customized views for users who are logged in vs not logged in.
-  - [ ] If the user is logged in, it should display a **Sign Out** button. 
-  - [ ] If no user is logged in, it should display **Login** and **Register** buttons
+- [x] **The Nav Bar:** Implement customized views for users who are logged in vs not logged in.
+  - [x] If the user is logged in, it should display a **Sign Out** button. 
+  - [x] If no user is logged in, it should display **Login** and **Register** buttons
   - [ ] Display a logo on the far left side, and contain links to the individual detailed activity page. 
 - [X] **The Landing Page:** Display a large hero image and a brief blurb on what this application is about
 - [X] **Login Page:** A form that allows users to login with email and password.

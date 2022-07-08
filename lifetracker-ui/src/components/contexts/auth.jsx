@@ -16,7 +16,13 @@ export const AuthContextProvider = ({ children }) => {
 
     const [isProcessing, setIsProcessing] = useState(false);
 
-    const handleOnLogin = async (navigate, emailInvalid, setEmailInvalid, email, password ) => {
+    const handleOnLogin = (
+        navigate,
+        emailInvalid,
+        setEmailInvalid,
+        email,
+        password
+    ) => {
         if (!emailInvalid || email == "") {
             setEmailInvalid(false);
             return;
@@ -32,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
                     localStorage.setItem("accessToken", data.user.accessToken);
                     console.log(localStorage.getItem("accessToken"));
                     setIsLoggedIn(true);
-                    navigate("/");
+                    navigate("/nutrition");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -42,7 +48,16 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
-    const handleOnRegister = async (navigate, isEmailValid, email, password, passwordConfirm, firstName, lastName, username) => {
+    const handleOnRegister = (
+        navigate,
+        isEmailValid,
+        email,
+        password,
+        passwordConfirm,
+        firstName,
+        lastName,
+        username
+    ) => {
         isEmailValid = email.indexOf("@") > 0;
         if (
             !isEmailValid ||
@@ -68,11 +83,26 @@ export const AuthContextProvider = ({ children }) => {
                 .then(({ data }) => {
                     localStorage.setItem("accessToken", data.user.accessToken);
                     setIsLoggedIn(true);
-                    navigate("/");
+                    navigate("/nutrition");
                 });
         } catch (err) {
             console.log(err);
         }
+    };
+
+    const fetchUser = () => {
+        setIsProcessing(true);
+        axios
+            .get("http://localhost:3001/auth/me", {
+                headers: {
+                    Authorization: `Bearer ${user}`,
+                },
+            })
+            .then((data) => {
+                setIsLoggedIn(true);
+                SetUserData(data.data);
+            });
+        setIsProcessing(false);
     };
 
     const authValue = {
@@ -90,6 +120,7 @@ export const AuthContextProvider = ({ children }) => {
         SetUserData,
         handleOnLogin,
         handleOnRegister,
+        fetchUser,
     };
 
     useEffect(() => {

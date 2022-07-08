@@ -272,15 +272,15 @@ The components in the `App.jsx` file should render the following components (alo
   - [ ] The **`activity`** context
 
     - [X] Create a file in the `contexts directory - `/contexts/activity.jsx`
-    - [ ] In that file, define a new `ActivityContext` with `React.createContext`
-    - [ ] Use that context to create an `ActivityContextProvider` component
-      - [ ] The `ActivityContextProvider` component should create state variables and updaters needed for `activity`, `initialized`, `isLoading`, and `error`.
-      - [ ] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
-      - [ ] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
-        - [ ] That hook should check to see if a user is logged in.
-        - [ ] If a user is logged in...
-          - [ ] Set the `isLoading` state variable to `true` and the `error` state variable to `null`
-          - [ ] Then, it should make a `GET` request to the `/activity` endpoint
+    - [X] In that file, define a new `ActivityContext` with `React.createContext`
+    - [X] Use that context to create an `ActivityContextProvider` component
+      - [X] The `ActivityContextProvider` component should create state variables and updaters needed for `activity`, `initialized`, `isLoading`, and `error`.
+      - [X] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
+      - [X] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
+        - [X] That hook should check to see if a user is logged in.
+        - [X] If a user is logged in...
+          - [X] Set the `isLoading` state variable to `true` and the `error` state variable to `null`
+          - [X] Then, it should make a `GET` request to the `/activity` endpoint
             - [ ] If there is an error with the request, it should set a message as the `error` state variable
             - [ ] If all goes well...
               - [ ] It should set the data as the `activity` state variable

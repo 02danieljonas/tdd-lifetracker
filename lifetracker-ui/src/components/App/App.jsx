@@ -9,37 +9,26 @@ import ActivityPage from "../ActivityPage/ActivityPage";
 import NutritionPage from "../NutritionPage/NutritionPage";
 import NotFound from "../NotFound/NotFound";
 import Loading from "../Loading/Loading";
-
-import { AuthContextProvider } from "components/contexts/Auth";
-import { useAuthContext } from "components/contexts/Auth";
-import axios from "axios";
+import { AuthContextProvider, useAuthContext } from "components/contexts/Auth";
+import { ActivityContextProvider } from "components/contexts/activity";
+import { NutritionContextProvider } from "components/contexts/Nutrition";
 
 export default function AppContainer() {
     return (
         <AuthContextProvider>
-            <App />
+            <ActivityContextProvider>
+                <NutritionContextProvider>
+                    <App />
+                </NutritionContextProvider>
+            </ActivityContextProvider>
         </AuthContextProvider>
     );
 }
 
 function App() {
-    const { user, setIsLoggedIn, SetUserData } = useAuthContext();
+    const { user, fetchUser } = useAuthContext();
 
     React.useEffect(() => {
-        const fetchUser = async () => {
-            axios
-                .get("http://localhost:3001/auth/me", {
-                    headers: {
-                        Authorization: `Bearer ${user}`,
-                    },
-                })
-                .then((data) => {
-                    // console.log("data", data.data);
-                    setIsLoggedIn(true);
-                    SetUserData(data.data);
-                });
-        };
-
         if (user) {
             fetchUser();
         }
