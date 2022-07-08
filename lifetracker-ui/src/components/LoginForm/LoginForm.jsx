@@ -1,17 +1,24 @@
 import { login } from "components/login/login";
 import React from "react";
 import axios from "axios";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 
-export default function LoginForm() {
+
+export default function LoginForm({isLoggedIn, setIsLoggedIn, userData}) {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    const navigate = useNavigate()
+
+
+
     const handleOnSubmit = async () => {
+        // useNavigate("/")
         if (!emailInvalid || email == "") {
             setEmailInvalid(false);
             return;
         }
-        
+
         try {
             axios
                 .post("http://localhost:3001/auth/login", {
@@ -22,6 +29,9 @@ export default function LoginForm() {
                     console.log(data.user.user, data.user.accessToken);
                     localStorage.setItem("accessToken", data.user.accessToken);
                     console.log(localStorage.getItem("accessToken"));
+                    setIsLoggedIn(true)
+                    navigate("/")
+
                 })
                 .catch((err) => {
                     console.log(err);
@@ -69,6 +79,7 @@ export default function LoginForm() {
                 className="submit-login"
                 onClick={() => {
                     handleOnSubmit();
+                    
                 }}
             >
                 Login

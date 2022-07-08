@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import NavLinks from "../NavLinks/NavLinks";
 
 
-export default function Navbar() {
-    console.log(logo);
+export default function Navbar({isLoggedIn, setIsLoggedIn, userData}) {
     return (
         <nav className="Navbar">
             <Link to="/" className="logo">
                 <img src={logo} width="60px" alt="Website logo" />
             </Link>
-            <NavLinks loggedIn={false}/>
+            <NavLinks isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>
         </nav>
     );
 }

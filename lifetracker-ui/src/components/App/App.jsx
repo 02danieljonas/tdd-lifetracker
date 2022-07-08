@@ -9,33 +9,68 @@ import ActivityPage from "../ActivityPage/ActivityPage";
 import NutritionPage from "../NutritionPage/NutritionPage";
 import NotFound from "../NotFound/NotFound";
 import Loading from "../Loading/Loading";
-import { UserContext } from "components/contexts/AuthContext";
 
-export default function App() {
+import {
+    AuthContextProvider,
+    useAuthContext,
+} from "components/contexts/AuthContext";
+import axios from "axios";
+
+export default function AppContainer() {
+    return (
+        <AuthContextProvider>
+            <App />
+        </AuthContextProvider>
+    );
+}
+
+function App() {
+    const { user, setUser } = useAuthContext();
+    const [ isLoggedIn, setIsLoggedIn ] = React.useState(false);
+    const [userData, SetUserData] = React.useState(null)
+    const [error, setError] = React.useState(null);
+    const [isFetching, setIsFetching] = React.useState(false);
+
+    React.useEffect(() => {
+        const fetchUser = async () => {
+            axios
+                .get("http://localhost:3001/auth/me", {
+                    headers: {
+                        Authorization: `Bearer ${user}`,
+                    },
+                })
+                .then((data) => {
+                    // console.log("data", data.data);
+                    setIsLoggedIn(true)
+                    SetUserData(data.data)
+                });
+        };
+
+        if (user) {
+            fetchUser();
+        }
+    }, [user]);
+    
+
     return (
         <div className="app">
             <React.Fragment>
                 <BrowserRouter>
-                    <Navbar />
-                    <UserContext.Provider value="f">
-                        <Routes>
-                            <Route path="/" element={<Landing />} />
-                            <Route path="/login" element={<LoginPage />} />
-                            <Route
-                                path="/register"
-                                element={<RegistrationPage />}
-                            />
-                            <Route
-                                path="/activity"
-                                element={<ActivityPage />}
-                            />
-                            <Route
-                                path="/nutrition/*"
-                                element={<NutritionPage />}
-                            />
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </UserContext.Provider>
+                    <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>
+                    <Routes>
+                        <Route path="/" element={<Landing isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>} />
+                        <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData} />} />
+                        <Route
+                            path="/register"
+                            element={<RegistrationPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>}
+                        />
+                        <Route path="/activity" element={<ActivityPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>} />
+                        <Route
+                            path="/nutrition/*"
+                            element={<NutritionPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userData={userData}/>}
+                        />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
                 </BrowserRouter>
             </React.Fragment>
         </div>
