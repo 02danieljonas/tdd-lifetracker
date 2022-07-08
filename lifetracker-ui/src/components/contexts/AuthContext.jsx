@@ -67,6 +67,39 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
+    const handleOnRegister = async (navigate, isEmailValid, email, password, passwordConfirm, firstName, lastName, username) => {
+        isEmailValid = email.indexOf("@") > 0;
+        if (
+            !isEmailValid ||
+            email == "" ||
+            password !== passwordConfirm ||
+            password == "" ||
+            firstName == "" ||
+            lastName == "" ||
+            username == ""
+        ) {
+            console.log("Please input the correct info");
+            return;
+        }
+        try {
+            axios
+                .post("http://localhost:3001/auth/register", {
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    username,
+                })
+                .then(({ data }) => {
+                    localStorage.setItem("accessToken", data.user.accessToken);
+                    setIsLoggedIn(true);
+                    navigate("/");
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const authValue = {
         user,
         setUser,
@@ -83,6 +116,7 @@ export const AuthContextProvider = ({ children }) => {
         userData,
         SetUserData,
         handleOnLogin,
+        handleOnRegister,
     };
 
     useEffect(() => {

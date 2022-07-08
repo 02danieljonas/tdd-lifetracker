@@ -1,10 +1,9 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "components/contexts/AuthContext";
 
 export default function RegistrationForm() {
-    const { setIsLoggedIn } = useAuthContext();
+    const { setIsLoggedIn, handleOnRegister } = useAuthContext();
     const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
     const [firstName, setFirstName] = React.useState("");
@@ -17,38 +16,7 @@ export default function RegistrationForm() {
     let isEmailValid = true;
     let isPasswordMatch = true;
 
-    const handleOnSubmit = async () => {
-        isEmailValid = email.indexOf("@") > 0;
-        if (
-            !isEmailValid ||
-            email == "" ||
-            password !== passwordConfirm ||
-            password == "" ||
-            firstName == "" ||
-            lastName == "" ||
-            username == ""
-        ) {
-            console.log("Please input the correct info");
-            return;
-        }
-        try {
-            axios
-                .post("http://localhost:3001/auth/register", {
-                    email,
-                    password,
-                    firstName,
-                    lastName,
-                    username,
-                })
-                .then(({ data }) => {
-                    localStorage.setItem("accessToken", data.user.accessToken);
-                    setIsLoggedIn(true);
-                    navigate("/");
-                });
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    const handleOnSubmit = handleOnRegister;
 
     if (email != "") {
         isEmailValid = email.indexOf("@") > 0;
@@ -149,7 +117,7 @@ export default function RegistrationForm() {
             )}
             <button
                 onClick={() => {
-                    handleOnSubmit();
+                    handleOnSubmit(navigate, isEmailValid, email, password, passwordConfirm, firstName, lastName, username)
                 }}
             >
                 Create Account

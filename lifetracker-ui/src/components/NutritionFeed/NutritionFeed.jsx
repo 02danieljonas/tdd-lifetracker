@@ -12,8 +12,8 @@ export default function NutritionFeed() {
             {nutritions.length == 0 ? (
                 <div className="empty-message">Nothing here yet</div>
             ) : (
-                nutritions.map(e=>
-                    <NutritionCard nutrition={e}/>)
+                nutritions.map((e, i)=>
+                    <NutritionCard nutrition={e} key={i}/>)
                 
             )}
         </div>
