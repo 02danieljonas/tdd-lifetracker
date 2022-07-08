@@ -17,7 +17,7 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 - [X] **The Landing Page:** Display a large hero image and a brief blurb on what this application is about
 - [X] **Login Page:** A form that allows users to login with email and password.
 - [X] **Registration Page:** A form that allows the user to sign up with their email, password, username, first name, and last name.
-- [ ] When a user first authenticates, they should be redirected to an authenticated view (i.e the detailed activity page). When they sign out, all frontend data should be reset.
+- [X] When a user first authenticates, they should be redirected to an authenticated view (i.e the detailed activity page). When they sign out, all frontend data should be reset.
 - [ ] Users have access to an overview Activity page that show one summary statistic about each of the 3 types of activity tracked.
 - [ ] The API should have a `security` middleware that only allows authenticated users to access resources and only allows users to access resources about themselves. 
 - [ ] Users should have the ability to track at least **1** types of activities (i.e Nutrition, Exercise, Sleep, etc.). Each activity should be tracked on separate pages.
@@ -50,15 +50,15 @@ Implement any of the following features to improve the application:
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-[Add your response here]
+Yes, the topics in the labs would have been helpful with completing the assignment, especially the videos covering the ApiClient class.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
-  
-[Add your response here]
+
+If I had more time I would follow the readme more thoroughly.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-[Add your response here]
+I didn't complete the lab during the time provided, so I will have to continue it during the weekend.
 
 ### Open-source libraries used
 
@@ -68,4 +68,5 @@ Implement any of the following features to improve the application:
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
 
+Shout outs to all the TAs.
 [Add your response here]
