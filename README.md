@@ -40,11 +40,7 @@ Implement any of the following features to improve the application:
 
 ### Walkthrough Video
 
-![](http://g.recordit.co/ABnSSEOdSx.gif)
-![](http://g.recordit.co/WTopRv8xSo.gif)
-![](http://g.recordit.co/xQdz6kONGo.gif)
-![](http://g.recordit.co/iJJckuLVl9.gif)
-`ADD_EMBEDDED_CODE_HERE`
+https://www.loom.com/share/4cc9033fa56c4863a2e797bbaecf63c6
 
 ### Reflection
 
