@@ -8,7 +8,7 @@ const {
 const db = require("../db");
 
 class Nutrition {
-    static async createNutrition(user_id, data) {
+    static async createNutrition(email, data) {
         const requiredFiled = [
             "name",
             "category",
@@ -31,14 +31,14 @@ class Nutrition {
             calories,
             user_id
         )
-        VALUES ($1, $2, $3, $4, $5, $6)
+        VALUES ($1, $2, $3, $4, $5, (select id from users where email = $6))
         RETURNING name,
         category,
         quantity,
         calories,
-        image_url,
-        user_id,
-        created_at
+        image_url AS "imageUrl",
+        user_id AS "userId",
+        created_at AS "CreatedAt"
         `,
             [
                 data.name,
@@ -46,24 +46,30 @@ class Nutrition {
                 data.quantity,
                 data.image_url,
                 data.calories,
-                user_id,
+                email,
             ]
         );
         return result.rows[0];
     }
 
-    static async fetchNutritionById(id) {
+    static async fetchNutritionById(nutritionId) {
         const result = await db.query(
-            "SELECT * FROM nutrition WHERE id = $1",
-            [id]
+            `SELECT n.id
+            FROM nutrition as n
+                JOIN users AS u ON u.id = b.user_id
+            WHERE id = $1`,
+            [nutritionId]
         );
+        if (result.rows.length == 0) {
+            throw new NotFoundError();
+        }
         return result.rows;
     }
 
-    static async listNutritionForUser(user) {
+    static async listNutritionForUser(email) {
         const result = await db.query(
-            "SELECT * FROM nutrition WHERE user_id = $1",
-            [user]
+            "SELECT * FROM nutrition WHERE user_id = (select id from users where email = $1)",
+            [email]
         );
         return result.rows;
     }

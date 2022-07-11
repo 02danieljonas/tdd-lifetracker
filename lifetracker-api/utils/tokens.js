@@ -10,11 +10,6 @@ class Token {
         const token = jwt.sign(info, SECRET_KEY);
         return token;
     }
-
-    static async undoToken(token, header) {
-        console.log(token, header)
-        return token, header
-    }
 }
 
 module.exports = Token;

@@ -60,10 +60,7 @@ function authenticateToken(req, res, next) {
             return res.sendStatus(403);
         }
         res.locals = user;
-        // console.log(res.locals)
-
         next();
-        // return res.status(200).json(req);
     });
 }
 

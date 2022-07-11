@@ -16,7 +16,6 @@ router.get("/me", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
-    console.log("req", req)
     try {
         const user = await User.login(req.body, req.headers);
         return res.status(200).json({ user });
@@ -28,7 +27,6 @@ router.post("/login", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
     try {
         const user = await User.register(req.body);
-        console.log(user);
         return res.status(201).json({ user });
     } catch (err) {
         next(err);
