@@ -7,40 +7,66 @@ const {
 
 const db = require("../db");
 
-
 class Nutrition {
-    static async createNutrition(nutrition) {
-        
+    static async createNutrition(user_id, data) {
+        const requiredFiled = [
+            "name",
+            "category",
+            "quantity",
+            "image_url",
+            "calories",
+        ];
+        requiredFiled.forEach((field) => {
+            if (!data.hasOwnProperty(field)) {
+                throw new BadRequestError(`Missing ${field} in request body`);
+            }
+        });
         const result = await db.query(
             `
         INSERT INTO nutrition (
             name,
             category,
-            calories,
+            quantity,
             image_url,
-            quantity
+            calories,
+            user_id
         )
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING email, password, first_name, last_name, username, created_at, update_at
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING name,
+        category,
+        quantity,
+        calories,
+        image_url,
+        user_id,
+        created_at
         `,
             [
-                lowercaseEmail,
-                hashedPw,
-                credentials.firstName,
-                credentials.lastName,
-                credentials.username,
+                data.name,
+                data.category,
+                data.quantity,
+                data.image_url,
+                data.calories,
+                user_id,
             ]
         );
-
-        return {};
+        return result.rows[0];
     }
 
-    static async fetchNutritionById(credentials, header) {
+    static async fetchNutritionById(id) {
+        const result = await db.query(
+            "SELECT * FROM nutrition WHERE id = $1",
+            [id]
+        );
+        return result.rows;
     }
 
-    static async listNutritionForUser(credentials, header) {
+    static async listNutritionForUser(user) {
+        const result = await db.query(
+            "SELECT * FROM nutrition WHERE user_id = $1",
+            [user]
+        );
+        return result.rows;
     }
 }
-
 
 module.exports = Nutrition;

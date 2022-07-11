@@ -5,7 +5,9 @@ const { PORT, BCRYPT_WORK_FACTOR,
     SECRET_KEY,
     REFRESH_SECRET_KEY, } = require("./config");
 const authRoutes = require("./routes/auth");
+const nutritionRoutes = require("./routes/nutrition");
 const security = require("./models/security");
+
 
 const jwt = require("jsonwebtoken");
 
@@ -30,11 +32,14 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/authToken", authenticateToken, (req, res)=>{
-    res.json({res: req.header})
+    res.json({res: res.locals})
 });
 
 
+
 app.use("/auth", authRoutes);
+
+app.use("/nutrition", authenticateToken, nutritionRoutes);
 
 app.use((req, res, next) => {
     return next(new NotFoundError());
@@ -59,7 +64,8 @@ function authenticateToken(req, res, next) {
         if (err) {
             return res.sendStatus(403);
         }
-        req.header = user
+        res.locals = user
+        // console.log(res.locals)
 
         next()
         // return res.status(200).json(req);
