@@ -28,7 +28,7 @@ export const ActivityContextProvider = ({ children }) => {
         if(isLoggedIn){
             setIsLoading(true)
             setError(null)
-            axios.get("http://localhost:3001/activity")
+            axios.get(`${process.env.REACT_APP_REMOTE_HOST_URL}/activity`)
         }
         console.log("Mounted")
     }, [])

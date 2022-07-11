@@ -1,13 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { PORT, BCRYPT_WORK_FACTOR,
-    SECRET_KEY,
-    REFRESH_SECRET_KEY, } = require("./config");
+const { SECRET_KEY } = require("./config");
 const authRoutes = require("./routes/auth");
 const nutritionRoutes = require("./routes/nutrition");
 const security = require("./models/security");
-
 
 const jwt = require("jsonwebtoken");
 
@@ -31,11 +28,9 @@ app.get("/", (req, res, next) => {
     res.status(200).json({ ping: "gnop" });
 });
 
-app.get("/authToken", authenticateToken, (req, res)=>{
-    res.json({res: res.locals})
+app.get("/authToken", authenticateToken, (req, res) => {
+    res.json({ res: res.locals });
 });
-
-
 
 app.use("/auth", authRoutes);
 
@@ -64,14 +59,12 @@ function authenticateToken(req, res, next) {
         if (err) {
             return res.sendStatus(403);
         }
-        res.locals = user
+        res.locals = user;
         // console.log(res.locals)
 
-        next()
+        next();
         // return res.status(200).json(req);
     });
-
 }
-
 
 module.exports = app;

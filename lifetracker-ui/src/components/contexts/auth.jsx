@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import ApiClient from "components/services/ApiClient";
 
 const AuthContext = createContext(null);
 
@@ -29,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
         }
         try {
             axios
-                .post("http://localhost:3001/auth/login", {
+                .post(`http://localhost:3001/auth/login`, {
                     email,
                     password,
                 })
@@ -48,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
-    const handleOnRegister = (
+    const handleOnRegister = async (
         navigate,
         isEmailValid,
         email,
@@ -71,9 +72,27 @@ export const AuthContextProvider = ({ children }) => {
             console.log("Please input the correct info");
             return;
         }
+{
+        // const { data, error } = await ApiClient.signupUser({
+        //     email,
+        //     password,
+        //     firstName,
+        //     lastName,
+        //     username,
+        // });
+
+        // if (error) setError((e) => ({ ...e, form: error }));
+        // if (data?.user){
+        //     ApiClient.setToken(data.token)
+        //     localStorage.setItem("accessToken", data.user.accessToken);
+        //     setIsLoggedIn(true);
+        //     navigate("/nutrition");
+        // }
+}
+
         try {
             axios
-                .post("http://localhost:3001/auth/register", {
+                .post(`http://localhost:3001/auth/register`, {
                     email,
                     password,
                     firstName,
@@ -93,7 +112,7 @@ export const AuthContextProvider = ({ children }) => {
     const fetchUser = () => {
         setIsProcessing(true);
         axios
-            .get("http://localhost:3001/auth/me", {
+            .get(`http://localhost:3001/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${user}`,
                 },
