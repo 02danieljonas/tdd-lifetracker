@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const [isProcessing, setIsProcessing] = useState(false);
 
-    const handleOnLogin = (
+    const handleOnLogin = async (
         navigate,
         emailInvalid,
         setEmailInvalid,
@@ -28,6 +28,11 @@ export const AuthContextProvider = ({ children }) => {
             setEmailInvalid(false);
             return;
         }
+
+        // const { data, error } = await ApiClient.loginUser({
+        //     email,
+        //     password,
+        // });
         try {
             axios
                 .post(`http://localhost:3001/auth/login`, {
@@ -35,7 +40,6 @@ export const AuthContextProvider = ({ children }) => {
                     password,
                 })
                 .then(({ data }) => {
-                    console.log(data.user.user, data.user.accessToken);
                     localStorage.setItem("accessToken", data.user.accessToken);
                     console.log(localStorage.getItem("accessToken"));
                     setIsLoggedIn(true);
@@ -72,7 +76,7 @@ export const AuthContextProvider = ({ children }) => {
             console.log("Please input the correct info");
             return;
         }
-{
+
         // const { data, error } = await ApiClient.signupUser({
         //     email,
         //     password,
@@ -80,15 +84,6 @@ export const AuthContextProvider = ({ children }) => {
         //     lastName,
         //     username,
         // });
-
-        // if (error) setError((e) => ({ ...e, form: error }));
-        // if (data?.user){
-        //     ApiClient.setToken(data.token)
-        //     localStorage.setItem("accessToken", data.user.accessToken);
-        //     setIsLoggedIn(true);
-        //     navigate("/nutrition");
-        // }
-}
 
         try {
             axios
@@ -107,6 +102,7 @@ export const AuthContextProvider = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
+
     };
 
     const fetchUser = () => {
@@ -120,6 +116,7 @@ export const AuthContextProvider = ({ children }) => {
             .then((data) => {
                 setIsLoggedIn(true);
                 SetUserData(data.data);
+                ApiClient.setToken(user)
             });
         setIsProcessing(false);
     };

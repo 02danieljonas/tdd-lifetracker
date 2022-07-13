@@ -18,6 +18,7 @@ router.get("/me", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
     try {
         const user = await User.login(req.body, req.headers);
+        console.log(user)
         return res.status(200).json({ user });
     } catch (err) {
         next(err);

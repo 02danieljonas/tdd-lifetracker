@@ -9,11 +9,12 @@ const db = require("../db");
 
 class Nutrition {
     static async createNutrition(email, data) {
+        console.log(data)
         const requiredFiled = [
             "name",
             "category",
             "quantity",
-            "image_url",
+            "imageUrl",
             "calories",
         ];
         requiredFiled.forEach((field) => {
@@ -44,7 +45,7 @@ class Nutrition {
                 data.name,
                 data.category,
                 data.quantity,
-                data.image_url,
+                data.imageUrl,
                 data.calories,
                 email,
             ]
@@ -68,7 +69,7 @@ class Nutrition {
 
     static async listNutritionForUser(email) {
         const result = await db.query(
-            "SELECT * FROM nutrition WHERE user_id = (select id from users where email = $1)",
+            `SELECT nutrition.id, nutrition.name, nutrition.category, nutrition.calories, nutrition.quantity, nutrition.image_url AS "imageUrl", nutrition.user_id  AS "userId", nutrition.created_at AS "createdAt" FROM nutrition WHERE user_id = (select id from users where email = $1)`,
             [email]
         );
         return result.rows;

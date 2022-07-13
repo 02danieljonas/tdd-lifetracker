@@ -1,8 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuthContext } from "components/contexts/Auth";
+import axios from "axios";
+import ApiClient from "components/services/ApiClient";
 
 const NutritionContext = createContext(null);
 
 export const NutritionContextProvider = ({ children }) => {
+    const { user, fetchUser } = useAuthContext();
+
     const [nutritions, setNutritions] = useState([
         {
             name: "name01",
@@ -28,10 +33,36 @@ export const NutritionContextProvider = ({ children }) => {
             createdAt: new Date().toLocaleDateString(),
         },
     ]);
+    //${user}
+    const fetcNutritions = () => {
+        axios
+            .get(`http://localhost:3001/nutrition/`, {
+                headers: {
+                    Authorization: `Bearer ${user}`,
+                },
+            })
+            .then(({ data }) => {
+                setNutritions(data.nutritions);
+            });
+    };
+
+    const createNutrition = async (data) => {
+        ApiClient.createNutrition(data);
+    
+        // axios
+        //     .get(`http://localhost:3001/nutrition/`, body, {
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             Authorization: `Bearer ${user}`,
+        //         },
+        //     })
+    };
 
     const NutritionValue = {
         nutritions,
         setNutritions,
+        fetcNutritions,
+        createNutrition,
     };
 
     return (

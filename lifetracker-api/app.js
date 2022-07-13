@@ -57,6 +57,7 @@ function authenticateToken(req, res, next) {
     }
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) {
+            console.log("Bad token")
             return res.sendStatus(403);
         }
         res.locals = user;

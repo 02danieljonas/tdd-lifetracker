@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "components/contexts/Auth";
 import axios from "axios";
+import ApiClient from "components/services/ApiClient";
 
 
 const ActivityContext = createContext(null);
@@ -28,7 +29,7 @@ export const ActivityContextProvider = ({ children }) => {
         if(isLoggedIn){
             setIsLoading(true)
             setError(null)
-            axios.get(`${process.env.REACT_APP_REMOTE_HOST_URL}/activity`)
+            // axios.get(`${process.env.REACT_APP_REMOTE_HOST_URL}/activity`)
         }
         console.log("Mounted")
     }, [])

@@ -15,6 +15,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
+    console.log("req")
     try {
         const nutritions = await Nutrition.createNutrition(
             res.locals.email,
@@ -37,13 +38,14 @@ router.get("/:nutritionId", async (req, res, next) => {
     }
 });
 
-router.get("/nutrition", async (req, res, next) => {
-    try {
-        const nutrition = await Nutrition.createNutrition({ user: res.locals });
-        res.json({ nutrition: nutrition });
-    } catch (err) {
-        next(err);
-    }
-});
+// router.get("/nutrition", async (req, res, next) => {
+//     console.log("req")
+//     try {
+//         const nutrition = await Nutrition.createNutrition({ user: res.locals });
+//         res.json({ nutrition: nutrition });
+//     } catch (err) {
+//         next(err);
+//     }
+// });
 
 module.exports = router;

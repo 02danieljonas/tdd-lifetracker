@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useNutritionContext } from "components/contexts/Nutrition";
 
 export default function NutritionForm() {
-    const { nutritions, setNutritions } = useNutritionContext();
+    const { nutritions, setNutritions, createNutrition } = useNutritionContext();
     const [name, setName] = useState("");
     const [calories, setCalories] = useState(1);
     const [imageUrl, setImageUrl] = useState("");
     const [category, setCategory] = useState("");
+    const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
 
     const [error, setError] = useState(null);
@@ -31,9 +32,10 @@ export default function NutritionForm() {
             //     console.log(error);
             // }
         }
-        if (name == "" || calories == "" || imageUrl == "" || category == "") {
+        if (name == "" || calories == "" || imageUrl == "" || category == "" || quantity == "") {
             setError("Error");
         } else {
+            createNutrition({ name, calories, imageUrl, category, quantity })
             setNutritions([
                 ...nutritions,
                 { name, calories, imageUrl, category },
@@ -64,6 +66,17 @@ export default function NutritionForm() {
                 className="form-input"
                 onChange={(e) => {
                     setCalories(e.target.value);
+                }}
+                id="calories"
+                name="calories"
+                defaultValue="1"
+            />
+                        <label>Quantity</label>
+            <input
+                type="number"
+                className="form-input"
+                onChange={(e) => {
+                    setQuantity(e.target.value);
                 }}
                 id="calories"
                 name="calories"

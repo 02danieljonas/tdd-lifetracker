@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NutritionCard from "../NutritionCard/NutritionCard";
 import { useNutritionContext } from "components/contexts/Nutrition";
+import { useAuthContext } from "components/contexts/Auth";
 
 export default function NutritionFeed() {
     const { nutritions } = useNutritionContext();
-    console.log(nutritions);
     return (
         <div className="nutrition-feed">
             {nutritions.length == 0 ? (
