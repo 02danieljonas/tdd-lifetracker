@@ -19,7 +19,7 @@ export default function ActivityFeed({
                 <h4>Average Calories Per Category</h4>
                 {placeholder.map((e, idx) => (
                     <SummaryStat
-                        stat={e.calories.toFixed(1)}
+                        stat={e.calories?e.calories.toFixed(1):e.calories}
                         key={idx}
                         label={e.category}
                         substat={""}
