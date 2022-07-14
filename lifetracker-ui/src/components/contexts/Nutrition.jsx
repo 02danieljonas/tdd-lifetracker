@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "components/contexts/Auth";
 import axios from "axios";
 import ApiClient from "components/services/ApiClient";
+import constant from "../../../constant";
 
 const NutritionContext = createContext(null);
 
@@ -36,7 +37,7 @@ export const NutritionContextProvider = ({ children }) => {
     //${user}
     const fetcNutritions = () => {
         axios
-            .get(`http://localhost:3001/nutrition/`, {
+            .get(`${constant()}/nutrition/`, {
                 headers: {
                     Authorization: `Bearer ${user}`,
                 },
@@ -50,7 +51,7 @@ export const NutritionContextProvider = ({ children }) => {
         ApiClient.createNutrition(data);
     
         // axios
-        //     .get(`http://localhost:3001/nutrition/`, body, {
+        //     .get(`${constant()}/nutrition/`, body, {
         //         headers: {
         //             'Content-Type': 'application/json',
         //             Authorization: `Bearer ${user}`,

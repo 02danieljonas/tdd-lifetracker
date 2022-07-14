@@ -1,4 +1,5 @@
 import axios from "axios";
+import constant from "../../../constant";
 class ApiClient {
     constructor(remoteHostUrl) {
         this.remoteHostUrl = remoteHostUrl;
@@ -13,7 +14,6 @@ class ApiClient {
             "Content-Type": "application/json",
         };
         if (this.token) {
-            console.log("ffffff", this.token)
             headers["Authorization"] = `Bearer ${this.token}`;
         }
 
@@ -50,4 +50,4 @@ class ApiClient {
     }
 }
 
-export default new ApiClient("http://localhost:3001");
+export default new ApiClient(`${constant()}`);

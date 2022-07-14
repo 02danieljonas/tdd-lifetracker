@@ -31,7 +31,6 @@ export const ActivityContextProvider = ({ children }) => {
             setError(null)
             // axios.get(`${process.env.REACT_APP_REMOTE_HOST_URL}/activity`)
         }
-        console.log("Mounted")
     }, [])
 
     return (

@@ -11,7 +11,10 @@ import NotFound from "../NotFound/NotFound";
 import Loading from "../Loading/Loading";
 import { AuthContextProvider, useAuthContext } from "components/contexts/Auth";
 import { ActivityContextProvider } from "components/contexts/activity";
-import { NutritionContextProvider, useNutritionContext } from "components/contexts/Nutrition";
+import {
+    NutritionContextProvider,
+    useNutritionContext,
+} from "components/contexts/Nutrition";
 
 export default function AppContainer() {
     return (
@@ -29,14 +32,12 @@ function App() {
     const { user, fetchUser } = useAuthContext();
     const { nutritions, fetcNutritions } = useNutritionContext();
 
-
     React.useEffect(() => {
         if (user) {
             fetchUser();
-            fetcNutritions()
+            fetcNutritions();
         }
     }, [user]);
-    console.log(user)
 
     return (
         <div className="app">

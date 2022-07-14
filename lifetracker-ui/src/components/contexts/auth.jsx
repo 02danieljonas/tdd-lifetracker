@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import ApiClient from "components/services/ApiClient";
+import constant from "../../../constant";
 
 const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    // const apiUrl = "http://localhost:3001"//"https://lifetracker-apiiiiiiiiiiiii.herokuapp.com"
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -35,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
         // });
         try {
             axios
-                .post(`http://localhost:3001/auth/login`, {
+                .post(`${constant()}/auth/login`, {
                     email,
                     password,
                 })
@@ -87,7 +89,7 @@ export const AuthContextProvider = ({ children }) => {
 
         try {
             axios
-                .post(`http://localhost:3001/auth/register`, {
+                .post(`${constant()}/auth/register`, {
                     email,
                     password,
                     firstName,
@@ -108,7 +110,7 @@ export const AuthContextProvider = ({ children }) => {
     const fetchUser = () => {
         setIsProcessing(true);
         axios
-            .get(`http://localhost:3001/auth/me`, {
+            .get(`${constant()}/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${user}`,
                 },
@@ -137,7 +139,7 @@ export const AuthContextProvider = ({ children }) => {
         handleOnLogin,
         handleOnRegister,
         fetchUser,
-    };
+        };
 
     useEffect(() => {
         setUser(localStorage.getItem("accessToken"));
